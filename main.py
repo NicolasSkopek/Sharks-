@@ -1,6 +1,6 @@
 import pygame
-from obj import Obj
 from menu import Menu
+from game import Game
 
 class Main:
     def __init__(self, width, height, title):
@@ -9,6 +9,7 @@ class Main:
         pygame.display.set_caption(title)
 
         self.menu = Menu()
+        self.game = Game()
 
         self.loop = True
 
@@ -16,6 +17,10 @@ class Main:
     def draw(self):
         if not self.menu.change_scene:
             self.menu.draw(self.window)
+        elif not self.game.change_scene:
+            self.game.draw(self.window)
+            self.game.update()
+
 
     def events(self):
         for event in pygame.event.get():
